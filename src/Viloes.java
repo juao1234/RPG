@@ -1,4 +1,4 @@
-package Viloes;
+package RPG;
 
 public class Viloes {
     private String nome;
