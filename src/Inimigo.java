@@ -7,6 +7,8 @@ public class Inimigo extends Personagem{
 
     //Aqui não precisa repetir os métodos da classe Personagem,
     //a não ser que queira usar o @Override caso o inimigo for fazer algo de especial comparado a classe Personagem.
-
+            public Inimigo(Inimigo other) {
+               super(other); 
+    }
     //Atualmente o Inimigo é idêntico ao Personagem, dps a gnt decide o que for fazer de diferente.
 }

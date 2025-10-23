@@ -5,5 +5,9 @@ public class Mago extends Personagem{
         super(nome, pontosVida, ataque, defesa, nivel);
     }
 
-    //Ainda falta definir o nome final e suas características próprias
+    //Ainda falta definir o nome final e suas características próprias|
+            public Mago(Mago other) {
+               super(other); 
+        
+    }
 }

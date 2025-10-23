@@ -99,4 +99,15 @@ public abstract class Personagem {
 
         return ret;
     }
+    
+protected Personagem(Personagem other) {
+    if (other == null) {
+        throw new IllegalArgumentException("other não pode ser null");
+    }
+    this.nome = other.nome;              
+    this.pontosVida = other.pontosVida;  
+    this.ataque = other.ataque;          
+    this.defesa = other.defesa;          
+    this.nivel = other.nivel;            
+}
 }

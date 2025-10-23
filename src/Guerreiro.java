@@ -6,4 +6,8 @@ public class Guerreiro extends Personagem{
     }
 
     //Ainda falta definir o nome final e suas características próprias
+        public Guerreiro(Guerreiro other) {
+               super(other); 
+        
+    }
 }
