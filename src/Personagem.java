@@ -4,7 +4,7 @@ public abstract class Personagem {
     private String nome;
     private int pontosVida, ataque, defesa;
     private short nivel;
-    //private Inventario inventario;
+    private Inventario inventario;
 
     public Personagem(String nome, int pontosVida, int ataque, int defesa, short nivel) throws Exception{
         this.setNome(nome);
@@ -12,6 +12,7 @@ public abstract class Personagem {
         this.setAtaque(ataque);
         this.setDefesa(defesa);
         this.setNivel(nivel);
+        this.inventario = new Inventario();
     }
 
     public void setNome(String nome){
@@ -65,6 +66,8 @@ public abstract class Personagem {
     public int getNivel(){
         return this.nivel;
     }
+
+    public Inventario getInventario(){ return this.inventario; }
 
     @Override
     public String toString(){

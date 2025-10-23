@@ -6,8 +6,8 @@ public class Arqueiro extends Personagem{
     }
 
     //Ainda falta definir o nome final e suas características próprias\
+
     public Arqueiro(Arqueiro other) {
-               super(other); 
-        
+               super(other);
     }
 }
