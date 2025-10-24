@@ -1,5 +1,7 @@
 package RPG;
 
+import java.util.Random;
+
 public abstract class Personagem {
     private String nome;
     private int pontosVida, ataque, defesa;
@@ -112,5 +114,51 @@ protected Personagem(Personagem other) {
     this.ataque = other.ataque;          
     this.defesa = other.defesa;          
     this.nivel = other.nivel;            
+}
+
+public boolean batalhar(Inimigo inimigo) {
+    Random random = new Random();
+
+    while (this.getPontosVida() > 0 && inimigo.getPontosVida() > 0) {
+        
+        int dadoJogador = random.nextInt(6) + 1;
+        int ataqueTotalJogador = this.getAtaque() + dadoJogador;
+
+        if (ataqueTotalJogador > inimigo.getDefesa()) {
+            int danoInimigo = ataqueTotalJogador - inimigo.getDefesa();
+            if (danoInimigo <= 0) danoInimigo = 1;
+
+            inimigo.setPontosVida(inimigo.getPontosVida() - danoInimigo);
+            System.out.println("Você acertou o inimigo e deu dano de:" + danoInimigo);
+            System.out.println("Vida do Inimigo: " + inimigo.getPontosVida());
+        } else {
+            System.out.println("Você errou o ataque.");
+        }
+
+        if (inimigo.getPontosVida() > 0) {
+            
+            int dadoInimigo = random.nextInt(6) + 1;
+            int ataqueTotalInimigo = inimigo.getAtaque() + dadoInimigo;
+
+            if (ataqueTotalInimigo > this.getDefesa()) {
+                int danoJogador = ataqueTotalInimigo - this.getDefesa();
+                if (danoJogador <= 0) danoJogador = 1; 
+
+                this.setPontosVida(this.getPontosVida() - danoJogador);
+                System.out.println("O inimigo te acertou e te deu dano de:" + danoJogador);
+                System.out.println("Sua Vida: " + this.getPontosVida());
+            } else {
+                System.out.println("O inimigo errou o ataque.");
+            }
+        }
+    } 
+
+    if (this.getPontosVida() > 0) {
+        System.out.println("Você venceu a batalha!");
+        return true;
+    } else {
+        System.out.println("Você foi derrotado!");
+        return false;
+    }
 }
 }
