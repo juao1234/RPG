@@ -63,9 +63,54 @@ public class Item implements Comparable<Item>, Cloneable {
         this.quantidade = quantidade;
     }
 
-    public boolean usar() {
-        if (quantidade <= 0) return false;
-        quantidade--;
+    public boolean usar(Personagem alvo) throws Exception {
+        if (this.quantidade <= 0) {
+            return false; // Não tem o item
+        }
+
+        switch (this.efeito) {
+            case "CURA_HP":
+                // Pega a vida atual e máxima do alvo
+                int vidaAtual = alvo.getPontosVida();
+                int vidaMaxima = alvo.getVidaMaxima();
+
+                // SE a vida estiver cheia, IMPEDE o uso.
+                if (vidaAtual >= vidaMaxima) {
+                    System.out.println(alvo.getNome() + " já está com a vida cheia!");
+                    return false; // Item NÃO foi consumido.
+                }
+
+                //O 20 É APENAS UM PLACEHOLDER, DEVERIAMOS ADICIONAR UM OUTRO ATRIBUTO
+                //DA QUANTIDADE QUE CURA OU QUANTIDADE DE ATAQUE/DEFESA QUE AUMENTA
+                int novaVida = vidaAtual + 20;
+                if (novaVida > vidaMaxima) {
+                    novaVida = vidaMaxima; // Trava no máximo
+                }
+
+                alvo.setPontosVida(novaVida);
+                System.out.println(alvo.getNome() + " recuperou HP! Vida atual: " + novaVida + "/" + vidaMaxima);
+                break;
+
+            case "BUFF_ATK":
+                // Lógica para um item de buff de ataque, tipo um energético
+                int atkAtual = alvo.getAtaque();
+                alvo.setAtaque(atkAtual + 5); //O 5 É PLACEHOLDER
+                System.out.println(alvo.getNome() + " sente-se mais forte!");
+                break;
+
+            case "BUFF_DEF":
+                // Lógica para um item de buff de defesa
+                int defAtual = alvo.getDefesa();
+                alvo.setAtaque(defAtual + 5); //O 5 É PLACEHOLDER
+                System.out.println(alvo.getNome() + " sente-se mais resistente!");
+                break;
+
+            default:
+                System.out.println(this.nome + " não tem um efeito conhecido.");
+                return false;
+        }
+
+        this.quantidade--;
         return true;
     }
 

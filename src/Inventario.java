@@ -27,7 +27,7 @@ public class Inventario implements Cloneable {
 
     public void adicionarItem(Item itemParaAdicionar) {
         if (itemParaAdicionar == null || itemParaAdicionar.getQuantidade() <= 0) {
-            return; // Não adiciona itens nulos ou com quantidade zero
+            return;
         }
 
         for (int i = 0; i < this.itens.size(); i++) {
@@ -45,23 +45,29 @@ public class Inventario implements Cloneable {
         this.itens.add(itemParaAdicionar.clone());
     }
 
-    public boolean usarItem(String nomeDoItem) {
+    public boolean usarItem(String nomeDoItem, Personagem alvo) throws Exception {
         for (int i = 0; i < this.itens.size(); i++) {
 
             Item item = this.itens.get(i);
 
             if (item.getNome().equalsIgnoreCase(nomeDoItem)) {
 
-                item.usar();
+                boolean foiUsado = item.usar(alvo);
 
-                if (item.getQuantidade() <= 0) {
-                    this.itens.remove(i); //Caso o item chegar a qtd 0 (acabou), então ele é removido do inventário
+                if (foiUsado) {
+                    // Se foi usado E a quantidade zerou, remove
+                    if (item.getQuantidade() <= 0) {
+                        this.itens.remove(i);
+                    }
+                    return true;
+                } else {
+                    // O item.usar() retornou 'false' (ex: vida cheia)
+                    return false;
                 }
-
-                return true;
             }
         }
 
+        System.out.println("Você não possui este item em seu inventário.");
         return false;
     }
 
