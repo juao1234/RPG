@@ -127,14 +127,14 @@ public void batalhar(Inimigo inimigo) {
     Random random = new Random();
 
     int dadoJogador = random.nextInt(6) + 1;
-    int ataqueTotalJogador = this.calcularAtaque() + dadoJogador; // Usa o método abstrato/sobrescrito
+    int ataqueTotalJogador = this.calcularAtaque() + dadoJogador;
 
     if (ataqueTotalJogador > inimigo.getDefesa()) {
         int danoInimigo = ataqueTotalJogador - inimigo.getDefesa();
         if (danoInimigo <= 0) danoInimigo = 1;
 
         inimigo.setPontosVida(inimigo.getPontosVida() - danoInimigo);
-        System.out.println("Você acertou o inimigo e deu dano de:" + danoInimigo);
+        System.out.println("Você acertou o inimigo e deu dano de: " + danoInimigo);
         System.out.println("Vida do Inimigo: " + inimigo.getPontosVida());
     } else {
         System.out.println("Você errou o ataque.");
@@ -150,7 +150,7 @@ public void batalhar(Inimigo inimigo) {
             if (danoJogador <= 0) danoJogador = 1;
 
             this.setPontosVida(this.getPontosVida() - danoJogador);
-            System.out.println("O inimigo te acertou e te deu dano de:" + danoJogador);
+            System.out.println("O inimigo te acertou e te deu dano de: " + danoJogador);
             System.out.println("Sua Vida: " + this.getPontosVida());
         } else {
             System.out.println("O inimigo errou o ataque.");

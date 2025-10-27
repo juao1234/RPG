@@ -16,7 +16,7 @@ public class Jogo {
 
     public void iniciarJogo() throws Exception {
         System.out.println("Durante uma tarde comum de aulas, uma nave alienígena cai...");
-        System.out.println("Você se vê preso em uma " + this.localizacaoAtual + ".");
+        System.out.println("Você se vê preso no " + this.localizacaoAtual + ".");
 
         while (this.jogador.getPontosVida() > 0 && !this.localizacaoAtual.equals("VITORIA")) { 
             exibirMenuPrincipal();
@@ -24,7 +24,7 @@ public class Jogo {
 
         if (this.localizacaoAtual.equals("VITORIA")) {
             System.out.println("\nVOCÊ VENCEU! O Comandante Matheus Noites foi derrotado e a chave da nave está em suas mãos.");
-            System.out.println("Você desativa o campo de força e a Terra está salva.");
+            System.out.println("Você desativa o campo de força e a PUC-Campinas está salva! Para comemorar, você decide ir estudar Java.");
         } else {
             System.out.println("GAME OVER... Você foi derrotado.");
         }
@@ -35,7 +35,8 @@ public class Jogo {
 
         System.out.println("\n----------------------------------------");
         System.out.println("Você está em: " + this.localizacaoAtual);
-        System.out.println("HP: " + this.jogador.getPontosVida());
+        System.out.println("HP: " + this.jogador.getPontosVida() +
+                " | ATK: " + this.jogador.getAtaque() + " | DEF: " + this.jogador.getDefesa());
         System.out.println("O que você deseja fazer?");
         System.out.println("1. Explorar o local");
         System.out.println("2. Mover-se para outro local");
@@ -45,7 +46,6 @@ public class Jogo {
         int escolha;
         try {
             escolha = Teclado.getUmInt();
-            Teclado.getUmString();
         } catch (Exception e) {
             System.err.println(e.getMessage());
             escolha = 0; 
@@ -74,7 +74,6 @@ public class Jogo {
         System.out.print("Escolha sua classe: ");
 
         int classe = Teclado.getUmInt();
-        Teclado.getUmString(); 
 
         System.out.print("Digite o nome do seu personagem: ");
         String nome = Teclado.getUmString();
@@ -113,14 +112,12 @@ public class Jogo {
                 case "BLOCO C":
                     System.out.println("1. BLOCO A");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "BLOCO A";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
                 case "BLOCO A":
                     System.out.println("1. ESTACIONAMENTO");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "ESTACIONAMENTO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
@@ -128,7 +125,6 @@ public class Jogo {
                     System.out.println("1. H-1 (Caminho da Esquerda)");
                     System.out.println("2. H-2 (Caminho da Direita)");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "H-1";
                     else if (escolha == 2) this.localizacaoAtual = "H-2";
                     else System.out.println("Opção inválida. Você permanece no local.");
@@ -136,7 +132,6 @@ public class Jogo {
                 case "H-1":
                     System.out.println("1. CAA");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "CAA";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
@@ -144,7 +139,6 @@ public class Jogo {
                     System.out.println("1. MESCLA");
                     System.out.println("2. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "MESCLA";
                     else if (escolha == 2) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
@@ -152,21 +146,18 @@ public class Jogo {
                 case "MESCLA":
                     System.out.println("1. BIBLIOTECA");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "BIBLIOTECA";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
                 case "BIBLIOTECA":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
                 case "H-2":
                     System.out.println("1. H-8");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "H-8";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
@@ -174,7 +165,6 @@ public class Jogo {
                     System.out.println("1. MANACÁS");
                     System.out.println("2. CAPELA");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "MANACÁS";
                     else if (escolha == 2) this.localizacaoAtual = "CAPELA";
                     else System.out.println("Opção inválida. Você permanece no local.");
@@ -184,7 +174,6 @@ public class Jogo {
                     System.out.println("2. H-12");
                     System.out.println("3. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "H-14";
                     else if (escolha == 2) this.localizacaoAtual = "H-12";
                     else if (escolha == 3) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
@@ -193,28 +182,24 @@ public class Jogo {
                 case "CAPELA":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
                 case "H-12":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
                 case "H-14":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
                 case "PRAÇA ALIMENTACAO":
                     System.out.println("1. CT-A");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "CT-A";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
@@ -223,7 +208,6 @@ public class Jogo {
                     System.out.println("2. Voltar para PRAÇA ALIMENTACAO");
                     System.out.print("Escolha: ");
                     escolha = Teclado.getUmInt();
-                    Teclado.getUmString();
                     if (escolha == 1) {
                         boolean temChave = this.jogador.getInventario().possuiItem("Chave da Sala dos Professores");
                         if (temChave) {
@@ -278,13 +262,33 @@ public class Jogo {
                 explorarCTA();
                 break;
             default:
-                System.out.println("Nada de interessante por aqui.");
                 int chance = dado.nextInt(100);
-                if (chance < 20) { 
-                    System.out.println("Um Drone de Patrulha te avista!");
+                if (chance < 30) {
                     Inimigo inimigo = Inimigo.gerarInimigo(this.localizacaoAtual);
+                    System.out.println("Um " + inimigo.getNome() + " te avista!");
                     iniciarBatalha(inimigo);
                 }
+                else{
+                    explorarEventoGenerico();
+                }
+        }
+    }
+
+    private void explorarEventoGenerico() throws Exception {
+        int chanceItem = dado.nextInt(100);
+
+        System.out.println("Você explora o local e vasculha algumas pilhas de escombros...");
+        if(chanceItem < 40){
+            System.out.println("Infelizmente, não há nada de interessante por aqui.");
+        }
+        else if (chanceItem < 70) {
+            System.out.println("Você encontrou um 'Refrigerante'!");
+            Item refri = new Item("Refrigerante", "Recupera 10 HP", "CURA_HP", 1, 10);
+            this.jogador.getInventario().adicionarItem(refri);
+        } else {
+            System.out.println("Você encontrou um 'Café Forte'!");
+            Item cafe = new Item("Café Forte", "Aumenta o Ataque em 5", "BUFF_ATK", 1, 5);
+            this.jogador.getInventario().adicionarItem(cafe);
         }
     }
 
@@ -313,7 +317,6 @@ public class Jogo {
         System.out.println("2. O restaurante Palatus (parece um tanto perigoso)");
         System.out.println("3. Sair");
         int escolha = Teclado.getUmInt();
-        Teclado.getUmString();
         int chance = dado.nextInt(100);
         if (escolha == 1) {
             if(chance > 20){
@@ -341,24 +344,30 @@ public class Jogo {
     }
 
     private void explorarH8() throws Exception {
-        System.out.println("Este é o Bloco H-8, da Escola de Economia e Negócios. As salas de aula e escritórios estão revirados.");
-        System.out.println("Você vê a copa dos professores com a porta arrombada.");
+        System.out.println("Este é o Bloco H-8. Você vê uma sala com a porta arrombada.");
         System.out.println("O que você faz?");
         System.out.println("1. Procurar na máquina de café");
-        System.out.println("2. Vasculhar o armário de suprimentos");
-        System.out.println("3. Ignorar e sair");
+        System.out.println("2. Vasculhar a sala aberta");
+
         int escolha = Teclado.getUmInt();
-        Teclado.getUmString();
+        int chance = dado.nextInt(100);
+
         if (escolha == 1) {
-            System.out.println("Você encontra uma cápsula de 'Café Forte'!");
-            Item cafe = new Item("Café Forte", "Aumenta o Ataque em 5", "BUFF_ATK", 1, 5);
-            this.jogador.getInventario().adicionarItem(cafe);
+            if (chance < 60) {
+                System.out.println("Você encontra um 'Café Forte'!");
+                Item cafe = new Item("Café Forte", "Aumenta o Ataque em 5", "BUFF_ATK", 1, 5);
+                this.jogador.getInventario().adicionarItem(cafe);
+            } else {
+                System.out.println("A máquina de café está quebrada. Nada aqui.");
+            }
         } else if (escolha == 2) {
-            System.out.println("Você acha um 'Kit de Primeiros Socorros' padrão de escritório.");
-            Item kit = new Item("Kit de Primeiros Socorros", "Recupera 75 HP", "CURA_HP", 1, 75);
-            this.jogador.getInventario().adicionarItem(kit);
-        } else {
-            System.out.println("Você deixa os suprimentos para trás.");
+            if (chance < 25) {
+                System.out.println("Você encontrou um 'Kit de Primeiros Socorros'!");
+                Item kit = new Item("Kit de Primeiros Socorros", "Recupera 75 HP", "CURA_HP", 1, 75);
+                this.jogador.getInventario().adicionarItem(kit);
+            } else {
+                System.out.println("A sala não tem nada de interessante. Apenas papéis inúteis.");
+            }
         }
     }
 
@@ -368,11 +377,11 @@ public class Jogo {
         System.out.println("O que você faz?");
         System.out.println("1. Investigar o som (Pode ser perigoso)");
         System.out.println("2. Se afastar silenciosamente");
+
         int escolha = Teclado.getUmInt();
-        Teclado.getUmString();
         if (escolha == 1) {
-            System.out.println("Você se aproxima do carro e um 'Soldado Invasor' que estava escondido te ataca!");
             Inimigo inimigo = Inimigo.gerarInimigo(this.localizacaoAtual);
+            System.out.println("Você se aproxima do carro e um " + inimigo.getNome() + " que estava escondido te ataca!");
             iniciarBatalha(inimigo);
         } else {
             System.out.println("Você decide não arriscar e se esgueira para a próxima área.");
@@ -380,45 +389,56 @@ public class Jogo {
     }
 
     private void explorarBiblioteca() throws Exception {
-        System.out.println("A Biblioteca está silenciosa, exceto pelos livros caídos no chão.");
-        System.out.println("Você encontra a mochila de outro estudante caída perto de uma mesa.");
-        System.out.println("O que você faz?");
+        System.out.println("A Biblioteca está silenciosa... Você encontra uma mochila caída.");
         System.out.println("1. Vasculhar a mochila por itens");
         System.out.println("2. Deixar para lá");
+
         int escolha = Teclado.getUmInt();
-        Teclado.getUmString();
+        int chance = dado.nextInt(100);
+
         if (escolha == 1) {
-            System.out.println("Você vasculhou a mochila e encontrou:");
-            Item refrigerante = new Item("Refrigerante", "Recupera 10 HP", "CURA_HP", 2, 10);
-            this.jogador.getInventario().adicionarItem(refrigerante);
-            System.out.println("- Refrigerante (x2)");
-            Item cafe = new Item("Café Forte", "Aumenta o Ataque em 5", "BUFF_ATK", 1, 5);
-            this.jogador.getInventario().adicionarItem(cafe);
-            System.out.println("- Café Forte (x1)");
+            if (chance < 50) {
+                System.out.println("Você vasculhou a mochila e encontrou:");
+                Item refrigerante = new Item("Refrigerante", "Recupera 10 HP", "CURA_HP", 2, 10);
+                this.jogador.getInventario().adicionarItem(refrigerante);
+                System.out.println("- Refrigerante (x2)");
+
+                Item cafe = new Item("Café Forte", "Aumenta o Ataque em 5", "BUFF_ATK", 1, 5);
+                this.jogador.getInventario().adicionarItem(cafe);
+                System.out.println("- Café Forte (x1)");
+            } else if (chance < 80) {
+                System.out.println("A mochila estava vazia...");
+            } else {
+                Inimigo inimigo = Inimigo.gerarInimigo(this.localizacaoAtual);
+                System.out.println("Um " + inimigo.getNome() + " estava de olho na mochila e te ataca!");
+                iniciarBatalha(inimigo);
+            }
         } else {
             System.out.println("Você deixa a mochila intacta.");
         }
     }
 
     private void explorarBlocoC() throws Exception {
-        System.out.println("Você está no Bloco C, onde tudo começou.");
-        System.out.println("O corredor está silencioso. Parece seguro por enquanto.");
-        System.out.println("Você vê um 'Kit de Primeiros Socorros' na parede da sala dos professores!");
-        System.out.println("1. Pegar o Kit");
-        System.out.println("2. Deixar");
-        int escolha = Teclado.getUmInt();
-        Teclado.getUmString();
-        if (escolha == 1) {
-            System.out.println("Você pega o Kit. Isso será muito útil.");
+        System.out.println("Você está no Bloco C. Você investiga uma das salas...");
+        int chance = dado.nextInt(100);
+
+        if (chance < 30) {
+            System.out.println("Você encontra um 'Kit de Primeiros Socorros'! Isso será muito útil.");
             Item kit = new Item("Kit de Primeiros Socorros", "Recupera 75 HP", "CURA_HP", 1, 75);
             this.jogador.getInventario().adicionarItem(kit);
+        } else if (chance < 70) {
+            System.out.println("A sala está vazia. Nada de interessante aqui.");
+        } else {
+            Inimigo inimigo = Inimigo.gerarInimigo(this.localizacaoAtual);
+            System.out.println("Um " + inimigo.getNome() + " estava escondido debaixo de uma mesa!");
+            iniciarBatalha(inimigo);
         }
     }
 
     private void explorarH15() throws Exception {
         System.out.println("Este é o H-15. No centro da sala, o Comandante Alienígena MATHEUS NOITES coordena as tropas.");
         System.out.println("Ele te vê e saca sua arma. Esta é a batalha final!");
-        Inimigo chefe = new Inimigo("Matheus Noites", 350, 60, 60, (short) 10);
+        Inimigo chefe = new Inimigo("Matheus Noites", 350, 60, 35, (short) 10);
         chefe.getInventario().adicionarItem(new Item("Chave da Nave", "Desativa o campo de força", "ITEM", 1, 0));
         iniciarBatalha(chefe);
         if (this.jogador.getPontosVida() > 0 && this.jogador.getInventario().possuiItem("Chave da Nave")) {
@@ -456,7 +476,6 @@ public class Jogo {
             int escolha = 0;
             try {
                 escolha = Teclado.getUmInt();
-                Teclado.getUmString();
             } catch (Exception e) {
                 System.err.println("Opção inválida.");
                 continue;
@@ -472,7 +491,6 @@ public class Jogo {
                     System.out.println("Você tenta fugir...");
                     int chanceFuga = dado.nextInt(10) + 1;
                     if (chanceFuga > 5) {
-                        System.out.println("Você conseguiu fugir da batalha!");
                         jogadorFugiu = true;
                     } else {
                         System.out.println("A fuga falhou! O inimigo ataca!");
@@ -489,15 +507,6 @@ public class Jogo {
                     break;
             }
             if (jogadorFugiu) break;
-            if (!jogadorFugiu && inimigo.getPontosVida() > 0) {
-                System.out.println("\n[TURNO DO INIMIGO]");
-                int dadoInimigo = dado.nextInt(6) + 1;
-                int ataqueTotalInimigo = inimigo.getAtaque() + dadoInimigo;
-                int danoRecebido = ataqueTotalInimigo - this.jogador.getDefesa();
-                if (danoRecebido <= 0) danoRecebido = 1;
-                this.jogador.setPontosVida(this.jogador.getPontosVida() - danoRecebido);
-                System.out.println("O " + inimigo.getNome() + " te atacou e causou " + danoRecebido + " de dano!");
-            }
         }
         if (jogadorFugiu) {
             System.out.println("Você fugiu com sucesso!");

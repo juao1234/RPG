@@ -23,8 +23,7 @@ public class Inimigo extends Personagem {
         int chance = dado.nextInt(100); 
         String loc = (localizacao == null) ? "" : localizacao.trim();
 
-        if (loc.equalsIgnoreCase("Prédio H") || loc.equalsIgnoreCase("Predio H")
-                || loc.equalsIgnoreCase("Biblioteca")) {
+        if (loc.equalsIgnoreCase("Biblioteca") || loc.equalsIgnoreCase("CT-A")) {
 
             if (chance < 50) {
                 return new Inimigo("Drone Sentinela", 90, 8, 15, (short) 3);
@@ -35,7 +34,6 @@ public class Inimigo extends Personagem {
             }
         }
 
-       
         if (chance < 60) {
             return new Inimigo("Drone de Patrulha", 40, 10, 5, (short) 1);
         } else if (chance < 90) {
