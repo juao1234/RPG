@@ -26,8 +26,8 @@ public class Inimigo extends Personagem{
             }
         }
 
-        // APENAS UM EXEMPLO!!! FALTA DEFINIR OS INIMIGOS/LOCAIS/HISTÓRIA FINAL!!!
-        // Lógica padrão para locais mais fáceis
+        // APENAS UM EXEMPLO!!! FALTA DEFINIR OS INIMIGOS FINAIS!!!
+        // Lógica padrão para locais genéricos
         if (chance < 70) {
             return new Inimigo("Drone de Patrulha", 40, 10, 5, (short) 1);
         } else {

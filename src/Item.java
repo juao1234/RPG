@@ -6,20 +6,14 @@ public class Item implements Comparable<Item>, Cloneable {
     private String nome;
     private String descricao;
     private String efeito;
-    private int quantidade;
+    private int quantidade, qtdEfeito;
 
-    public Item() {
-        this.nome = "";
-        this.descricao = "";
-        this.efeito = "";
-        this.quantidade = 0;
-    }
-
-    public Item(String nome, String descricao, String efeito, int quantidade) {
+    public Item(String nome, String descricao, String efeito, int quantidade, int qtdEfeito) {
         setNome(nome);
         setDescricao(descricao);
         setEfeito(efeito);
         setQuantidade(quantidade);
+        setQtdEfeito(qtdEfeito);
     }
 
     public Item(Item other) {
@@ -28,6 +22,7 @@ public class Item implements Comparable<Item>, Cloneable {
         this.descricao = other.descricao;
         this.efeito = other.efeito;
         this.quantidade = other.quantidade;
+        this.qtdEfeito = other.qtdEfeito;
     }
 
     public String getNome() {
@@ -44,6 +39,10 @@ public class Item implements Comparable<Item>, Cloneable {
 
     public int getQuantidade() {
         return quantidade;
+    }
+
+    public int getQtdEfeito() {
+        return this.qtdEfeito;
     }
 
     public void setNome(String nome) {
@@ -63,6 +62,11 @@ public class Item implements Comparable<Item>, Cloneable {
         this.quantidade = quantidade;
     }
 
+    public void setQtdEfeito(int qtdEfeito) {
+        if (qtdEfeito < 0) throw new IllegalArgumentException("Quantidade de efeito não pode ser negativa.");
+        this.qtdEfeito = qtdEfeito;
+    }
+
     public boolean usar(Personagem alvo) throws Exception {
         if (this.quantidade <= 0) {
             return false; // Não tem o item
@@ -80,9 +84,7 @@ public class Item implements Comparable<Item>, Cloneable {
                     return false; // Item NÃO foi consumido.
                 }
 
-                //O 20 É APENAS UM PLACEHOLDER, DEVERIAMOS ADICIONAR UM OUTRO ATRIBUTO
-                //DA QUANTIDADE QUE CURA OU QUANTIDADE DE ATAQUE/DEFESA QUE AUMENTA
-                int novaVida = vidaAtual + 20;
+                int novaVida = vidaAtual + this.qtdEfeito;
                 if (novaVida > vidaMaxima) {
                     novaVida = vidaMaxima; // Trava no máximo
                 }
@@ -94,14 +96,14 @@ public class Item implements Comparable<Item>, Cloneable {
             case "BUFF_ATK":
                 // Lógica para um item de buff de ataque, tipo um energético
                 int atkAtual = alvo.getAtaque();
-                alvo.setAtaque(atkAtual + 5); //O 5 É PLACEHOLDER
+                alvo.setAtaque(atkAtual + this.qtdEfeito);
                 System.out.println(alvo.getNome() + " sente-se mais forte!");
                 break;
 
             case "BUFF_DEF":
                 // Lógica para um item de buff de defesa
                 int defAtual = alvo.getDefesa();
-                alvo.setAtaque(defAtual + 5); //O 5 É PLACEHOLDER
+                alvo.setDefesa(defAtual + this.qtdEfeito);
                 System.out.println(alvo.getNome() + " sente-se mais resistente!");
                 break;
 
@@ -145,6 +147,7 @@ public class Item implements Comparable<Item>, Cloneable {
                 ", descricao='" + descricao + '\'' +
                 ", efeito='" + efeito + '\'' +
                 ", quantidade=" + quantidade +
+                ", qtdEfeito=" + qtdEfeito +
                 '}';
     }
 }
