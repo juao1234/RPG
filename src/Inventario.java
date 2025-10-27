@@ -76,6 +76,19 @@ public class Inventario implements Cloneable {
         return this.itens;
     }
 
+    public ArrayList<Item> getItens() {
+        return this.itens;
+    }
+
+    public boolean possuiItem(String nomeDoItem) {
+        for (Item item : this.itens) {
+            if (item.getNome().equalsIgnoreCase(nomeDoItem)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public Inventario clone() {
         return new Inventario(this);

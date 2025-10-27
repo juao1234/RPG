@@ -11,21 +11,28 @@ public class Jogo {
     public Jogo() throws Exception {
         this.dado = new Random();
         this.jogador = criarPersonagem();
-        this.localizacaoAtual = "Sala de Aula - Bloco C";
+        this.localizacaoAtual = "BLOCO C"; 
     }
 
     public void iniciarJogo() throws Exception {
         System.out.println("Durante uma tarde comum de aulas, uma nave alienígena cai...");
         System.out.println("Você se vê preso em uma " + this.localizacaoAtual + ".");
 
-        while (this.jogador.getPontosVida() > 0) {
+        while (this.jogador.getPontosVida() > 0 && !this.localizacaoAtual.equals("VITORIA")) { 
             exibirMenuPrincipal();
         }
 
-        System.out.println("GAME OVER... Você foi derrotado.");
+        if (this.localizacaoAtual.equals("VITORIA")) {
+            System.out.println("\nVOCÊ VENCEU! O Comandante Matheus Noites foi derrotado e a chave da nave está em suas mãos.");
+            System.out.println("Você desativa o campo de força e a Terra está salva.");
+        } else {
+            System.out.println("GAME OVER... Você foi derrotado.");
+        }
     }
 
     private void exibirMenuPrincipal() throws Exception {
+        if (this.localizacaoAtual.equals("VITORIA")) return;
+
         System.out.println("\n----------------------------------------");
         System.out.println("Você está em: " + this.localizacaoAtual);
         System.out.println("HP: " + this.jogador.getPontosVida());
@@ -38,9 +45,10 @@ public class Jogo {
         int escolha;
         try {
             escolha = Teclado.getUmInt();
+            Teclado.getUmString();
         } catch (Exception e) {
             System.err.println(e.getMessage());
-            escolha = 0; // Opção inválida
+            escolha = 0; 
         }
 
         switch (escolha) {
@@ -66,6 +74,7 @@ public class Jogo {
         System.out.print("Escolha sua classe: ");
 
         int classe = Teclado.getUmInt();
+        Teclado.getUmString(); 
 
         System.out.print("Digite o nome do seu personagem: ");
         String nome = Teclado.getUmString();
@@ -75,22 +84,19 @@ public class Jogo {
         switch (classe) {
             case 1:
                 System.out.println("Você é 'O Atleta'! Foco em resistir ao combate.");
-                p = new Guerreiro(nome);
+                p = new Atleta(nome);
                 break;
-
             case 2:
                 System.out.println("Você é 'O Programador'! Usando lógica para atacar.");
-                p = new Mago(nome);
+                p = new Programador(nome);
                 break;
-
             case 3:
                 System.out.println("Você é 'O Arquiteto'! Precisão é sua arma.");
-                p = new Arqueiro(nome);
+                p = new Arquiteto(nome);
                 break;
-
             default:
                 System.out.println("Opção inválida. Escolhendo 'O Atleta' por padrão.");
-                p = new Guerreiro(nome);
+                p = new Atleta(nome);
                 break;
         }
 
@@ -107,126 +113,136 @@ public class Jogo {
                 case "BLOCO C":
                     System.out.println("1. BLOCO A");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "BLOCO A";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "BLOCO A":
                     System.out.println("1. ESTACIONAMENTO");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "ESTACIONAMENTO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "ESTACIONAMENTO":
                     System.out.println("1. H-1 (Caminho da Esquerda)");
                     System.out.println("2. H-2 (Caminho da Direita)");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "H-1";
                     else if (escolha == 2) this.localizacaoAtual = "H-2";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
-                // --- ROTA DA DIREITA ---
                 case "H-1":
                     System.out.println("1. CAA");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "CAA";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "CAA":
                     System.out.println("1. MESCLA");
                     System.out.println("2. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "MESCLA";
                     else if (escolha == 2) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "MESCLA":
                     System.out.println("1. BIBLIOTECA");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "BIBLIOTECA";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "BIBLIOTECA":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
-                // --- ROTA DA ESQUERDA ---
                 case "H-2":
                     System.out.println("1. H-8");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "H-8";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "H-8":
                     System.out.println("1. MANACÁS");
                     System.out.println("2. CAPELA");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "MANACÁS";
                     else if (escolha == 2) this.localizacaoAtual = "CAPELA";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "MANACÁS":
                     System.out.println("1. H-14");
                     System.out.println("2. H-12");
                     System.out.println("3. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "H-14";
                     else if (escolha == 2) this.localizacaoAtual = "H-12";
                     else if (escolha == 3) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "CAPELA":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "H-12":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "H-14":
                     System.out.println("1. PRAÇA ALIMENTACAO");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "PRAÇA ALIMENTACAO";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
-                // --- CAMINHO FINAL ---
                 case "PRAÇA ALIMENTACAO":
                     System.out.println("1. CT-A");
                     escolha = Teclado.getUmInt();
+                    Teclado.getUmString();
                     if (escolha == 1) this.localizacaoAtual = "CT-A";
                     else System.out.println("Opção inválida. Você permanece no local.");
                     break;
-
                 case "CT-A":
-                    System.out.println("1. H-15 (FIM)");
+                    System.out.println("1. H-15 (FIM) - [TRANCADO]");
+                    System.out.println("2. Voltar para PRAÇA ALIMENTACAO");
+                    System.out.print("Escolha: ");
                     escolha = Teclado.getUmInt();
-                    if (escolha == 1) this.localizacaoAtual = "H-15 (FIM)";
-                    else System.out.println("Opção inválida. Você permanece no local.");
+                    Teclado.getUmString();
+                    if (escolha == 1) {
+                        boolean temChave = this.jogador.getInventario().possuiItem("Chave da Sala dos Professores");
+                        if (temChave) {
+                            System.out.println("Você usa a 'Chave da Sala dos Professores' e destranca a porta do H-15.");
+                            this.localizacaoAtual = "H-15 (FIM)";
+                        } else {
+                            System.out.println("A porta para o H-15 está trancada. Você precisa da 'Chave da Sala dos Professores'.");
+                            System.out.println("(O supervisor Benigno no CT-A deve tê-la...)");
+                        }
+                    } else if (escolha == 2) {
+                        this.localizacaoAtual = "PRAÇA ALIMENTACAO";
+                    } else {
+                        System.out.println("Opção inválida. Você permanece no local.");
+                    }
                     break;
-
                 case "H-15 (FIM)":
                     System.out.println("Você chegou ao seu destino final. Não há para onde ir.");
                     System.out.println("Explore o local para o confronto final!");
                     break;
-
                 default:
                     System.out.println("Erro: Localização desconhecida. Você permanece no local.");
                     break;
@@ -258,12 +274,13 @@ public class Jogo {
             case "ESTACIONAMENTO":
                 explorarEstacionamento();
                 break;
-            // Adicione 'case' para outros locais que você quer detalhar
+            case "CT-A": 
+                explorarCTA();
+                break;
             default:
-                // Evento genérico para locais que não tem uma função própria
                 System.out.println("Nada de interessante por aqui.");
                 int chance = dado.nextInt(100);
-                if (chance < 20) { // 20% de chance de batalha em locais genéricos
+                if (chance < 20) { 
                     System.out.println("Um Drone de Patrulha te avista!");
                     Inimigo inimigo = Inimigo.gerarInimigo(this.localizacaoAtual);
                     iniciarBatalha(inimigo);
@@ -271,27 +288,22 @@ public class Jogo {
         }
     }
 
-    // --- MÉTODOS DE EXPLORAR LOCAIS ESPECÍFICOS
-
-    private void explorarCT() throws Exception{
+    private void explorarCTA() throws Exception {
         System.out.println("Você encontra o Supervisor Alienígena, chamado BENIGNO, e seu esquadrão!");
         System.out.println("Se prepare para uma onda de inimigos!");
-
-        Inimigo inimigo = Inimigo.gerarInimigo("Praça de alimentação");
-        iniciarBatalha(inimigo);
-
-        inimigo = Inimigo.gerarInimigo("Praça de alimentação"); //Gera um outro inimigo
-        iniciarBatalha(inimigo);
-
-        inimigo = Inimigo.gerarInimigo("Praça de alimentação");//Gera um OUTRO inimigo
-        iniciarBatalha(inimigo);
-
+        Inimigo inimigo1 = Inimigo.gerarInimigo("CT-A");
+        iniciarBatalha(inimigo1);
+        if (this.jogador.getPontosVida() <= 0) return;
+        Inimigo inimigo2 = Inimigo.gerarInimigo("CT-A");
+        iniciarBatalha(inimigo2);
+        if (this.jogador.getPontosVida() <= 0) return;
+        Inimigo inimigo3 = Inimigo.gerarInimigo("CT-A");
+        iniciarBatalha(inimigo3);
+        if (this.jogador.getPontosVida() <= 0) return;
+        System.out.println("\n!!! BENIGNO ESTÁ TE ESPERANDO !!!");
         Inimigo chefe = new Inimigo("Benigno", 200, 30, 30, (short) 8);
         chefe.getInventario().adicionarItem(new Item("Chave da Sala dos Professores", "Destranca a sala dos professores no H-15", "ITEM", 1, 0));
-
-        //SERIA BOM COLOCAR UMA FUNÇÃO ONDE VOCÊ SÓ PODE NAVEGAR PRO H15 QUANDO VOCÊ TEM A CHAVE DA SALA DOS PROFESSORES,
-        //ATUALMENTE VOCÊ SÓ PODE IR LÁ DIRETO E ISSO NÃO É BOM! Também poderia fazer mais itens chave assim para os outros lugares,
-        //por que atualmente você só pode navegar direto por todos os lugares sem ter que fazer nada e ir direto pro boss final.
+        iniciarBatalha(chefe);
     }
 
     private void explorarPracaAlimentacao() throws Exception {
@@ -300,17 +312,15 @@ public class Jogo {
         System.out.println("1. A Lanchonete Papa João XXIII (parece intacta)");
         System.out.println("2. O restaurante Palatus (parece um tanto perigoso)");
         System.out.println("3. Sair");
-
         int escolha = Teclado.getUmInt();
-
+        Teclado.getUmString();
         int chance = dado.nextInt(100);
         if (escolha == 1) {
             if(chance > 20){
                 System.out.println("Você vasculha a lanchonete e encontra um Salgado!");
                 Item salgado = new Item("Salgado", "Cura 20 HP", "CURA_HP", 1, 20);
                 this.jogador.getInventario().adicionarItem(salgado);
-            }
-            else{
+            } else {
                 System.out.println("Você vasculha a lanchonete e encontra um inimigo!");
                 Inimigo inimigo = Inimigo.gerarInimigo("Praça de alimentação");
                 iniciarBatalha(inimigo);
@@ -320,8 +330,7 @@ public class Jogo {
                 System.out.println("O lugar está destruído, mas nos destroços você encontrou um Energético!");
                 Item energetico = new Item("Energético", "Aumenta o Ataque em 10", "BUFF_ATK", 1, 10);
                 this.jogador.getInventario().adicionarItem(energetico);
-            }
-            else{
+            } else {
                 System.out.println("Você vasculha os destroços do restaurante e encontra um inimigo!");
                 Inimigo inimigo = Inimigo.gerarInimigo("Praça de alimentação");
                 iniciarBatalha(inimigo);
@@ -338,9 +347,8 @@ public class Jogo {
         System.out.println("1. Procurar na máquina de café");
         System.out.println("2. Vasculhar o armário de suprimentos");
         System.out.println("3. Ignorar e sair");
-
         int escolha = Teclado.getUmInt();
-
+        Teclado.getUmString();
         if (escolha == 1) {
             System.out.println("Você encontra uma cápsula de 'Café Forte'!");
             Item cafe = new Item("Café Forte", "Aumenta o Ataque em 5", "BUFF_ATK", 1, 5);
@@ -360,9 +368,8 @@ public class Jogo {
         System.out.println("O que você faz?");
         System.out.println("1. Investigar o som (Pode ser perigoso)");
         System.out.println("2. Se afastar silenciosamente");
-
         int escolha = Teclado.getUmInt();
-
+        Teclado.getUmString();
         if (escolha == 1) {
             System.out.println("Você se aproxima do carro e um 'Soldado Invasor' que estava escondido te ataca!");
             Inimigo inimigo = Inimigo.gerarInimigo(this.localizacaoAtual);
@@ -378,20 +385,16 @@ public class Jogo {
         System.out.println("O que você faz?");
         System.out.println("1. Vasculhar a mochila por itens");
         System.out.println("2. Deixar para lá");
-
         int escolha = Teclado.getUmInt();
-
+        Teclado.getUmString();
         if (escolha == 1) {
             System.out.println("Você vasculhou a mochila e encontrou:");
-
             Item refrigerante = new Item("Refrigerante", "Recupera 10 HP", "CURA_HP", 2, 10);
             this.jogador.getInventario().adicionarItem(refrigerante);
             System.out.println("- Refrigerante (x2)");
-
             Item cafe = new Item("Café Forte", "Aumenta o Ataque em 5", "BUFF_ATK", 1, 5);
             this.jogador.getInventario().adicionarItem(cafe);
             System.out.println("- Café Forte (x1)");
-
         } else {
             System.out.println("Você deixa a mochila intacta.");
         }
@@ -400,47 +403,37 @@ public class Jogo {
     private void explorarBlocoC() throws Exception {
         System.out.println("Você está no Bloco C, onde tudo começou.");
         System.out.println("O corredor está silencioso. Parece seguro por enquanto.");
-        // Este local pode ter um evento de encontrar um "Kit de Primeiros Socorros"
         System.out.println("Você vê um 'Kit de Primeiros Socorros' na parede da sala dos professores!");
         System.out.println("1. Pegar o Kit");
         System.out.println("2. Deixar");
-
         int escolha = Teclado.getUmInt();
+        Teclado.getUmString();
         if (escolha == 1) {
             System.out.println("Você pega o Kit. Isso será muito útil.");
             Item kit = new Item("Kit de Primeiros Socorros", "Recupera 75 HP", "CURA_HP", 1, 75);
             this.jogador.getInventario().adicionarItem(kit);
         }
-
-        //ESSE EVENTO DO KIT DE PRIMEIROS SOCORROS É APENAS UM EXEMPLO! O GUERREIRO JÁ VEM COM UM ENTÃO NÃO SEI
-        //SE É UMA BOA DEIXAR ISSO.
     }
 
     private void explorarH15() throws Exception {
         System.out.println("Este é o H-15. No centro da sala, o Comandante Alienígena MATHEUS NOITES coordena as tropas.");
         System.out.println("Ele te vê e saca sua arma. Esta é a batalha final!");
-
         Inimigo chefe = new Inimigo("Matheus Noites", 350, 60, 60, (short) 10);
         chefe.getInventario().adicionarItem(new Item("Chave da Nave", "Desativa o campo de força", "ITEM", 1, 0));
-
         iniciarBatalha(chefe);
-
-        //FALTA FAZER O FIM DA HISTÓRIA E DAR UM USO PRO ITEM CHAVE DA NAVE!
-        //Não consegui pensar em um final bom kkkkkkkkkkkkkkk
+        if (this.jogador.getPontosVida() > 0 && this.jogador.getInventario().possuiItem("Chave da Nave")) {
+            this.localizacaoAtual = "VITORIA";
+        }
     }
 
     private void abrirInventario() throws Exception {
         System.out.println(this.jogador.getInventario().toString());
         System.out.print("Digite o nome do item que deseja usar (ou 'voltar'): ");
-
         String nomeItem = Teclado.getUmString();
-
         if (nomeItem.equalsIgnoreCase("voltar")) {
             return;
         }
-        
         boolean sucesso = this.jogador.getInventario().usarItem(nomeItem, this.jogador);
-
         if (sucesso) {
             System.out.println(this.jogador.getNome() + " usou " + nomeItem + ".");
         } else {
@@ -450,28 +443,24 @@ public class Jogo {
 
     private void iniciarBatalha(Inimigo inimigo) throws Exception {
         System.out.println("!!! BATALHA INICIADA: " + inimigo.getNome() + " apareceu! !!!");
-
         boolean jogadorFugiu = false;
-
         while (this.jogador.getPontosVida() > 0 && inimigo.getPontosVida() > 0) {
             System.out.println("\n[TURNO DE COMBATE]");
             System.out.printf("Sua Vida (HP): %d\n", this.jogador.getPontosVida());
             System.out.printf("Vida Inimigo (HP): %d\n", inimigo.getPontosVida());
-
             System.out.println("O que você deseja fazer?");
             System.out.println("1. Atacar");
             System.out.println("2. Usar Item (Inventário)");
             System.out.println("3. Tentar Fugir");
             System.out.print("Escolha: ");
-
             int escolha = 0;
             try {
                 escolha = Teclado.getUmInt();
+                Teclado.getUmString();
             } catch (Exception e) {
                 System.err.println("Opção inválida.");
                 continue;
             }
-
             switch (escolha) {
                 case 1:
                     this.jogador.batalhar(inimigo);
@@ -489,63 +478,61 @@ public class Jogo {
                         System.out.println("A fuga falhou! O inimigo ataca!");
                         int dadoInimigo = dado.nextInt(6) + 1;
                         int ataqueTotalInimigo = inimigo.getAtaque() + dadoInimigo;
-                        if (ataqueTotalInimigo > this.jogador.getDefesa()) {
-                            int danoJogador = ataqueTotalInimigo - this.jogador.getDefesa();
-                            if (danoJogador <= 0) danoJogador = 1;
-                            this.jogador.setPontosVida(this.jogador.getPontosVida() - danoJogador);
-                            System.out.println("O inimigo te acertou e causou " + danoJogador + " de dano!");
-                        } else {
-                            System.out.println("O inimigo ataca, mas você se defende!");
-                        }
+                        int danoRecebido = ataqueTotalInimigo - this.jogador.getDefesa();
+                        if (danoRecebido <= 0) danoRecebido = 1;
+                        this.jogador.setPontosVida(this.jogador.getPontosVida() - danoRecebido);
+                        System.out.println("O inimigo te acertou e causou " + danoRecebido + " de dano!");
                     }
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
             }
-
-            if (jogadorFugiu) {
-                break;
+            if (jogadorFugiu) break;
+            if (!jogadorFugiu && inimigo.getPontosVida() > 0) {
+                System.out.println("\n[TURNO DO INIMIGO]");
+                int dadoInimigo = dado.nextInt(6) + 1;
+                int ataqueTotalInimigo = inimigo.getAtaque() + dadoInimigo;
+                int danoRecebido = ataqueTotalInimigo - this.jogador.getDefesa();
+                if (danoRecebido <= 0) danoRecebido = 1;
+                this.jogador.setPontosVida(this.jogador.getPontosVida() - danoRecebido);
+                System.out.println("O " + inimigo.getNome() + " te atacou e causou " + danoRecebido + " de dano!");
             }
         }
-
         if (jogadorFugiu) {
             System.out.println("Você fugiu com sucesso!");
-        }
-        else if (this.jogador.getPontosVida() > 0) {
+        } else if (this.jogador.getPontosVida() > 0) {
             System.out.println("Você derrotou o " + inimigo.getNome() + "!");
-
-            Item itemDropado;
-            int chance = dado.nextInt(100);
-
-            if (chance < 40) {
-                // 0-39 (40% de chance): Não dropa nada
-                itemDropado = null;
-            } else if (chance < 65) {
-                // 40-64 (25% de chance): Drop - Buff de Defesa
-                // (Valores de qtdEfeito são sugestões)
-                itemDropado = new Item("Pedaço de armadura alienígena", "Aumenta a Defesa em 3", "BUFF_DEF", 1, 3);
-            } else if (chance < 90) {
-                // 65-89 (25% de chance): Drop - Cura
-                itemDropado = new Item("Injeção alienígena", "Recupera 40 HP", "CURA_HP", 1, 40);
-            } else {
-                // 90-99 (10% de chance): Drop - Buff de Ataque (mais raro)
-                itemDropado = new Item("Lâmina alienígena", "Aumenta o Ataque em 7", "BUFF_ATK", 1, 7);
+            Item itemDropado = null;
+            if (inimigo.getNome().equals("Benigno") || inimigo.getNome().equals("Matheus Noites")) {
+                if (!inimigo.getInventario().getItens().isEmpty()) {
+                    itemDropado = inimigo.getInventario().getItens().get(0);
+                    inimigo.getInventario().getItens().remove(0);
+                }
             }
-
-            // Processa o resultado do drop
+            if (itemDropado == null) {
+                int chance = dado.nextInt(100);
+                if (chance < 40) {
+                    itemDropado = null;
+                } else if (chance < 65) {
+                    itemDropado = new Item("Pedaço de armadura alienígena", "Aumenta a Defesa em 3", "BUFF_DEF", 1, 3);
+                } else if (chance < 90) {
+                    itemDropado = new Item("Injeção alienígena", "Recupera 40 HP", "CURA_HP", 1, 40);
+                } else {
+                    itemDropado = new Item("Lâmina alienígena", "Aumenta o Ataque em 7", "BUFF_ATK", 1, 7);
+                }
+            }
             if (itemDropado != null) {
                 System.out.println("O inimigo deixou cair: " + itemDropado.getNome() + "!");
-
                 this.jogador.getInventario().adicionarItem(itemDropado);
                 System.out.println(itemDropado.getNome() + " foi adicionado ao seu inventário.");
-
             } else {
                 System.out.println("O inimigo não deixou nada para trás.");
             }
-
         } else {
             System.out.println("Você foi abatido...");
         }
     }
 }
+
+

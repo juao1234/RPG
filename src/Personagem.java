@@ -3,12 +3,15 @@ package RPG;
 import java.util.Random;
 
 public abstract class Personagem {
+
+    
+    public abstract int calcularAtaque();
     private String nome;
     private int pontosVida, ataque, defesa, vidaMaxima;
     private short nivel;
     private Inventario inventario;
 
-    public Personagem(String nome, int pontosVida, int ataque, int defesa, short nivel) throws Exception{
+    public Personagem(String nome, int pontosVida, int ataque, int defesa, short nivel) {
         this.setNome(nome);
         this.setPontosVida(pontosVida);
         this.setAtaque(ataque);
@@ -26,7 +29,7 @@ public abstract class Personagem {
         return this.nome;
     }
 
-    public void setPontosVida(int pontosVida) throws Exception{
+    public void setPontosVida(int pontosVida) {
         this.pontosVida = pontosVida;
     }
 
@@ -34,9 +37,9 @@ public abstract class Personagem {
         return this.pontosVida;
     }
 
-    public void setAtaque(int ataque) throws Exception{
+    public void setAtaque(int ataque) {
         if(ataque < 0){
-            throw new Exception("Valor de ataque inválido!");
+            throw new IllegalArgumentException("Valor de ataque inválido!");
         }
         this.ataque = ataque;
     }
@@ -45,9 +48,9 @@ public abstract class Personagem {
         return this.ataque;
     }
 
-    public void setDefesa(int defesa) throws Exception{
+    public void setDefesa(int defesa) {
         if(defesa < 0){
-            throw new Exception("Valor de defesa inválido!");
+            throw new IllegalArgumentException("Valor de defesa inválido!");
         }
         this.defesa = defesa;
     }
@@ -56,9 +59,9 @@ public abstract class Personagem {
         return this.defesa;
     }
 
-    public void setNivel(short nivel) throws Exception{
+    public void setNivel(short nivel) {
         if(nivel < 0){
-            throw new Exception("Valor de nível inválido!");
+            throw new IllegalArgumentException("Valor de nível inválido!");
         }
         this.nivel = nivel;
     }
@@ -120,11 +123,11 @@ protected Personagem(Personagem other) {
     this.inventario = other.inventario.clone();
 }
 
-public void batalhar(Inimigo inimigo) throws Exception {
+public void batalhar(Inimigo inimigo) {
     Random random = new Random();
 
     int dadoJogador = random.nextInt(6) + 1;
-    int ataqueTotalJogador = this.getAtaque() + dadoJogador;
+    int ataqueTotalJogador = this.calcularAtaque() + dadoJogador; // Usa o método abstrato/sobrescrito
 
     if (ataqueTotalJogador > inimigo.getDefesa()) {
         int danoInimigo = ataqueTotalJogador - inimigo.getDefesa();
