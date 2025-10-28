@@ -305,7 +305,7 @@ public class Jogo {
         iniciarBatalha(inimigo3);
         if (this.jogador.getPontosVida() <= 0) return;
         System.out.println("\n!!! BENIGNO ESTÁ TE ESPERANDO !!!");
-        Inimigo chefe = new Inimigo("Benigno", 200, 30, 30, (short) 8);
+        Inimigo chefe = new Inimigo("Benigno", 200, 30, 20, (short) 8);
         chefe.getInventario().adicionarItem(new Item("Chave da Sala dos Professores", "Destranca a sala dos professores no H-15", "ITEM", 1, 0));
         iniciarBatalha(chefe);
     }
@@ -438,7 +438,7 @@ public class Jogo {
     private void explorarH15() throws Exception {
         System.out.println("Este é o H-15. No centro da sala, o Comandante Alienígena MATHEUS NOITES coordena as tropas.");
         System.out.println("Ele te vê e saca sua arma. Esta é a batalha final!");
-        Inimigo chefe = new Inimigo("Matheus Noites", 350, 60, 35, (short) 10);
+        Inimigo chefe = new Inimigo("Matheus Noites", 300, 60, 20, (short) 10);
         chefe.getInventario().adicionarItem(new Item("Chave da Nave", "Desativa o campo de força", "ITEM", 1, 0));
         iniciarBatalha(chefe);
         if (this.jogador.getPontosVida() > 0 && this.jogador.getInventario().possuiItem("Chave da Nave")) {

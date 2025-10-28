@@ -2,7 +2,7 @@ package RPG;
 
 public class Programador extends Personagem {
     public Programador(String nome) {
-        super(nome, 70, 16, 8, (short) 1);
+        super(nome, 70, 20, 10, (short) 1);
 
         Item salgado = new Item("Salgado", "Cura 20 HP", "CURA_HP", 1, 20);
         this.getInventario().adicionarItem(salgado);

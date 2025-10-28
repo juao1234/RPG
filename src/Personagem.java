@@ -4,7 +4,6 @@ import java.util.Random;
 
 public abstract class Personagem {
 
-    
     public abstract int calcularAtaque();
     private String nome;
     private int pontosVida, ataque, defesa, vidaMaxima;
